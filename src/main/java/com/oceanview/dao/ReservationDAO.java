@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class ReservationDAO {
 
     public boolean addReservation(Reservation reservation) {
@@ -75,4 +78,40 @@ public class ReservationDAO {
 
         return reservation;
     }
+
+
+    public List<Reservation> getAllReservations() {
+
+        List<Reservation> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM reservations";
+
+        try {
+
+            Connection conn = DBConnection.getInstance().getConnection();
+
+            try (PreparedStatement stmt = conn.prepareStatement(sql);
+                 ResultSet rs = stmt.executeQuery()) {
+
+                while (rs.next()) {
+
+                    Reservation r = new Reservation();
+
+                    r.setReservationNumber(rs.getString("reservation_number"));
+                    r.setGuestName(rs.getString("guest_name"));
+                    r.setRoomType(rs.getString("room_type"));
+                    r.setCheckIn(rs.getDate("check_in"));
+                    r.setCheckOut(rs.getDate("check_out"));
+
+                    list.add(r);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
 }
