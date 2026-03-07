@@ -10,6 +10,9 @@ import java.sql.ResultSet;
 import java.util.List;
 import java.util.ArrayList;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 public class ReservationDAO {
 
     public boolean addReservation(Reservation reservation) {
@@ -112,6 +115,73 @@ public class ReservationDAO {
         }
 
         return list;
+    }
+
+
+    public int getReservationCount() {
+
+        int count = 0;
+
+        try {
+
+            Connection conn = DBConnection.getInstance().getConnection();
+
+            String sql = "SELECT COUNT(*) FROM reservations";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return count;
+    }
+
+
+    public long getTotalRevenue() {
+
+        long revenue = 0;
+
+        try {
+
+            Connection conn = DBConnection.getInstance().getConnection();
+
+            String sql = "SELECT room_type, check_in, check_out FROM reservations";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                String roomType = rs.getString("room_type");
+
+                LocalDate checkIn = rs.getDate("check_in").toLocalDate();
+                LocalDate checkOut = rs.getDate("check_out").toLocalDate();
+
+                long nights = ChronoUnit.DAYS.between(checkIn, checkOut);
+
+                int price = 0;
+
+                if (roomType.equals("Standard"))
+                    price = 100;
+                else if (roomType.equals("Deluxe"))
+                    price = 150;
+                else if (roomType.equals("Suite"))
+                    price = 250;
+
+                revenue += nights * price;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return revenue;
     }
 
 }

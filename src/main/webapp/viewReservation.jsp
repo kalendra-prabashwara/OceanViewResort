@@ -4,20 +4,74 @@
 Reservation r = (Reservation) request.getAttribute("reservation");
 %>
 
-<h2>Reservation Details</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Details | Ocean View Resort</title>
+    <link rel="stylesheet" type="text/css" href="css/details.css">
+</head>
+<body>
 
-<% if(r != null) { %>
+    <header class="page-header">
+        <h1>Reservation Details</h1>
+    </header>
 
-Reservation Number: <%= r.getReservationNumber() %> <br>
-Guest Name: <%= r.getGuestName() %> <br>
-Address: <%= r.getAddress() %> <br>
-Contact: <%= r.getContactNumber() %> <br>
-Room Type: <%= r.getRoomType() %> <br>
-Check In: <%= r.getCheckIn() %> <br>
-Check Out: <%= r.getCheckOut() %> <br>
+    <div class="details-container">
+        <div class="details-card">
+            
+            <% if(r != null) { %>
+            
+            <div class="detail-row">
+                <span class="detail-label">Reservation Number</span>
+                <span class="detail-value"><%= r.getReservationNumber() %></span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">Guest Name</span>
+                <span class="detail-value"><%= r.getGuestName() %></span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">Address</span>
+                <span class="detail-value"><%= r.getAddress() %></span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">Contact</span>
+                <span class="detail-value"><%= r.getContactNumber() %></span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">Room Type</span>
+                <span class="detail-value"><%= r.getRoomType() %></span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">Check In</span>
+                <span class="detail-value"><%= r.getCheckIn() %></span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">Check Out</span>
+                <span class="detail-value"><%= r.getCheckOut() %></span>
+            </div>
+            
+            <a href="dashboard" class="btn-back">Back to Dashboard</a>
+            
+            <% } else { %>
+            
+            <div class="not-found">
+                <p>Reservation not found.</p>
+            </div>
+            
+            <a href="searchReservation.jsp" class="btn-back">Search Again</a>
+            
+            <% } %>
 
-<% } else { %>
+        </div>
+    </div>
 
-Reservation not found.
-
-<% } %>
+</body>
+</html>

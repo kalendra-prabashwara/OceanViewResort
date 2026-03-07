@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Calculate Bill</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Bill | Ocean View Resort</title>
+    <link rel="stylesheet" type="text/css" href="css/calculate.css">
 </head>
 <body>
 
-<h2>Calculate Reservation Bill</h2>
+    <header class="page-header">
+        <h1>Calculate Reservation Bill</h1>
+    </header>
 
-<form action="calculateBill" method="post">
+    <div class="calculate-container">
+        <div class="calculate-card">
+            
+            <form action="calculateBill" method="post">
+                
+                <div class="form-group">
+                    <label class="form-label">Enter Reservation Number</label>
+                    <input type="text" name="reservationNumber" class="form-input" placeholder="Enter reservation number" required>
+                </div>
 
-Enter Reservation Number:
-<input type="text" name="reservationNumber">
+                <button type="submit" class="btn-calculate">Calculate Bill</button>
+                
+                <a href="dashboard" class="btn-cancel">Cancel</a>
 
-<button type="submit">Calculate Bill</button>
+            </form>
 
-</form>
+        </div>
+    </div>
 
 </body>
 </html>

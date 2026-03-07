@@ -6,16 +6,63 @@ long nights = (Long) request.getAttribute("nights");
 long total = (Long) request.getAttribute("total");
 %>
 
-<h2>Reservation Bill</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Bill | Ocean View Resort</title>
+    <link rel="stylesheet" type="text/css" href="css/bill.css">
+</head>
+<body>
 
-Reservation Number: <%= r.getReservationNumber() %> <br>
-Guest Name: <%= r.getGuestName() %> <br>
-Room Type: <%= r.getRoomType() %> <br>
+    <header class="page-header">
+        <h1>Reservation Bill</h1>
+    </header>
 
-Number of Nights: <%= nights %> <br>
+    <div class="bill-container">
+        <div class="bill-card">
+            
+            <div class="bill-section">
+                <div class="bill-row">
+                    <span class="bill-label">Reservation Number</span>
+                    <span class="bill-value"><%= r.getReservationNumber() %></span>
+                </div>
+                
+                <div class="bill-row">
+                    <span class="bill-label">Guest Name</span>
+                    <span class="bill-value"><%= r.getGuestName() %></span>
+                </div>
+                
+                <div class="bill-row">
+                    <span class="bill-label">Room Type</span>
+                    <span class="bill-value"><%= r.getRoomType() %></span>
+                </div>
+            </div>
 
-Total Bill: $<%= total %>
+            <div class="bill-divider"></div>
 
-<br><br>
+            <div class="bill-section">
+                <div class="bill-row">
+                    <span class="bill-label">Number of Nights</span>
+                    <span class="bill-value"><%= nights %></span>
+                </div>
+            </div>
 
-<button onclick="window.print()">Print Bill</button>
+            <div class="bill-divider"></div>
+
+            <div class="bill-total">
+                <span class="total-label">Total Bill</span>
+                <span class="total-value">USD <%= total %></span>
+            </div>
+
+            <div class="bill-actions">
+                <button onclick="window.print()" class="btn-print">Print Bill</button>
+                <a href="dashboard" class="btn-back">Back to Dashboard</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

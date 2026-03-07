@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Search Reservation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Reservation | Ocean View Resort</title>
+    <link rel="stylesheet" type="text/css" href="css/search.css">
 </head>
 <body>
 
-<h2>Search Reservation</h2>
+    <header class="page-header">
+        <h1>Search Reservation</h1>
+    </header>
 
-<form action="viewReservation" method="post">
+    <div class="search-container">
+        <div class="search-card">
+            
+            <form action="viewReservation" method="post">
+                
+                <div class="form-group">
+                    <label class="form-label">Reservation Number</label>
+                    <input type="text" name="reservationNumber" class="form-input" placeholder="Enter reservation number" required>
+                </div>
 
-Reservation Number:
-<input type="text" name="reservationNumber">
+                <button type="submit" class="btn-search">Search</button>
+                
+                <a href="dashboard" class="btn-cancel">Cancel</a>
 
-<button type="submit">Search</button>
+            </form>
 
-</form>
+        </div>
+    </div>
 
 </body>
 </html>
